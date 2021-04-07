@@ -1,0 +1,35 @@
+[15-Mar-2021 15:02:16 Europe/Berlin] 0::login.php:108:[before upgrade] count(): Parameter must be an array or an object that implements Countable
+[15-Mar-2021 15:02:22 Europe/Berlin] 0::login.php:108:[before upgrade] count(): Parameter must be an array or an object that implements Countable
+[19-Mar-2021 11:29:07 Europe/Berlin] 0::main.inc:68:[before upgrade] Unhandled exception [0]: Call to undefined function page_footer().
+[19-Mar-2021 11:40:07 Europe/Berlin] 0::session.inc:440:[before upgrade] Unhandled exception [0]: Call to undefined function get_text_init().
+[19-Mar-2021 11:40:15 Europe/Berlin] 0::session.inc:463:[before upgrade] Unhandled exception [0]: Class 'Ajax' not found.
+[19-Mar-2021 11:40:15 Europe/Berlin] 0::renderer.php:123:[before upgrade] implode(): Invalid arguments passed
+[04-Apr-2021 13:15:24 Europe/Berlin] 0:admin:connect_db_mysqli.inc:110:[before upgrade] mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given
+[04-Apr-2021 13:15:24 Europe/Berlin] 0:admin:connect_db_mysqli.inc:127:[before upgrade] mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given
+[04-Apr-2021 13:15:27 Europe/Berlin] 0:admin:connect_db_mysqli.inc:110:[before upgrade] mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given
+[04-Apr-2021 13:15:27 Europe/Berlin] 0:admin:connect_db_mysqli.inc:127:[before upgrade] mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given
+[04-Apr-2021 13:15:29 Europe/Berlin] 0:admin:connect_db_mysqli.inc:110:[before upgrade] mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given
+[04-Apr-2021 13:15:29 Europe/Berlin] 0:admin:connect_db_mysqli.inc:127:[before upgrade] mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given
+[04-Apr-2021 13:15:33 Europe/Berlin] 0:admin:connect_db_mysqli.inc:110:[before upgrade] mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given
+[04-Apr-2021 13:15:33 Europe/Berlin] 0:admin:connect_db_mysqli.inc:127:[before upgrade] mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given
+[04-Apr-2021 13:16:02 Europe/Berlin] <b>DATABASE ERROR :</b> could not get validate user login for admin<br>error code : 1146<br>error message : Table 'faccount.0_users' doesn't exist<br>sql that failed was : SELECT * FROM 0_users WHERE user_id = 'admin' AND password='aafe06e46da6f8158e7a90926b1b7a84'<br><br><br>
+[04-Apr-2021 13:16:20 Europe/Berlin] <b>DATABASE ERROR :</b> could not get validate user login for admin<br>error code : 1146<br>error message : Table 'faccount.0_users' doesn't exist<br>sql that failed was : SELECT * FROM 0_users WHERE user_id = 'admin' AND password='25d55ad283aa400af464c76d713c07ad'<br><br><br>
+[04-Apr-2021 17:15:19 Europe/Berlin] <b>DATABASE ERROR :</b> could not get validate user login for admin<br>error code : 1146<br>error message : Table 'faccount.0_users' doesn't exist<br>sql that failed was : SELECT * FROM 0_users WHERE user_id = 'admin' AND password='25d55ad283aa400af464c76d713c07ad'<br><br><br>
+[04-Apr-2021 17:30:18 Europe/Berlin] <b>DATABASE ERROR :</b> could not get validate user login for admin<br>error code : 1146<br>error message : Table 'faccount.0_users' doesn't exist<br>sql that failed was : SELECT * FROM 0_users WHERE user_id = 'admin' AND password='02fcdc687ea469de024bc922f68926ef'<br><br><br>
+[04-Apr-2021 17:30:24 Europe/Berlin] <b>DATABASE ERROR :</b> could not get validate user login for visualexperiencecom@gmail.com<br>error code : 1146<br>error message : Table 'faccount.0_users' doesn't exist<br>sql that failed was : SELECT * FROM 0_users WHERE user_id = 'visualexperiencecom@gmail.com' AND password='22af4d5695040caedda1ab67011b3a5a'<br><br><br>
+[04-Apr-2021 17:30:34 Europe/Berlin] <b>DATABASE ERROR :</b> could not get validate user login for visualexperiencecom@gmail.com<br>error code : 1146<br>error message : Table 'faccount.0_users' doesn't exist<br>sql that failed was : SELECT * FROM 0_users WHERE user_id = 'visualexperiencecom@gmail.com' AND password='22af4d5695040caedda1ab67011b3a5a'<br><br><br>
+[05-Apr-2021 10:50:26 Europe/Berlin] 1:admin:frontaccounting.php:88: Unhandled exception [0]: Class 'setup_app' not found.
+[05-Apr-2021 10:50:33 Europe/Berlin] 1:admin:frontaccounting.php:88: Unhandled exception [0]: Class 'setup_app' not found.
+[05-Apr-2021 10:50:39 Europe/Berlin] 1:admin:frontaccounting.php:84: Unhandled exception [0]: Class 'general_ledger_app' not found.
+[05-Apr-2021 10:50:41 Europe/Berlin] 1:admin:frontaccounting.php:84: Unhandled exception [0]: Class 'general_ledger_app' not found.
+[05-Apr-2021 10:50:47 Europe/Berlin] 1:admin:frontaccounting.php:83: Unhandled exception [0]: Class 'dimensions_app' not found.
+[05-Apr-2021 10:50:52 Europe/Berlin] 1:admin:frontaccounting.php:83: Unhandled exception [0]: Class 'dimensions_app' not found.
+[05-Apr-2021 13:32:35 Europe/Berlin] 1:admin:sales_order_entry.php:741: Unhandled exception [0]: Call to a member function is_started() on null.
+[05-Apr-2021 15:00:45 Europe/Berlin] 1:admin:class.pdf.inc:333: A non-numeric value encountered
+[05-Apr-2021 15:00:45 Europe/Berlin] 1:admin:header2.inc:211: A non-numeric value encountered
+[05-Apr-2021 15:15:04 Europe/Berlin] 1:admin:header2.inc:166: Invalid argument supplied for foreach()
+[05-Apr-2021 15:15:04 Europe/Berlin] 1:admin:header2.inc:184: count(): Parameter must be an array or an object that implements Countable
+[05-Apr-2021 15:15:04 Europe/Berlin] 1:admin:header2.inc:194: Invalid argument supplied for foreach()
+[05-Apr-2021 15:27:10 Europe/Berlin] 1:admin:class.pdf.inc:215: Unhandled exception [0]: Too few arguments to function Cpdf::addText(), 1 passed in /home/vinnyvinny/Sites/faccounting/reporting/rep107.php on line 316 and exactly 4 expected.
+[05-Apr-2021 15:27:13 Europe/Berlin] 1:admin:class.pdf.inc:215: Unhandled exception [0]: Too few arguments to function Cpdf::addText(), 1 passed in /home/vinnyvinny/Sites/faccounting/reporting/rep107.php on line 316 and exactly 4 expected.
+[05-Apr-2021 15:27:31 Europe/Berlin] 1:admin:pdf_report.inc:743: Unhandled exception [0]: Too few arguments to function FrontReport::TextWrap(), 1 passed in /home/vinnyvinny/Sites/faccounting/reporting/rep107.php on line 316 and at least 4 expected.
