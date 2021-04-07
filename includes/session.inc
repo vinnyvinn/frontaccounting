@@ -241,9 +241,7 @@ function write_login_filelog($login, $result)
 function check_page_security($page_security)
 {
 	global $SysPrefs;
-
 	$msg = '';
-
 	if (!$_SESSION["wa_current_user"]->check_user_access())
 	{
 		// notification after upgrade from pre-2.2 version
