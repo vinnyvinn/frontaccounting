@@ -168,7 +168,7 @@ function password_reset_success()
 
   	echo "<br><a href='$path_to_root/index.php'>" . _("Login here") . "</a>";
   	echo "</center>";
-
+	
 	kill_login();
 	die();
 }
@@ -241,21 +241,21 @@ function write_login_filelog($login, $result)
 function check_page_security($page_security)
 {
 	global $SysPrefs;
-
+	
 	$msg = '';
-
+	
 	if (!$_SESSION["wa_current_user"]->check_user_access())
 	{
 		// notification after upgrade from pre-2.2 version
 		$msg = $_SESSION["wa_current_user"]->old_db ?
 			 _("Security settings have not been defined for your user account.")
-				. "<br>" . _("Please contact your system administrator.")
+				. "<br>" . _("Please contact your system administrator.")	
 			: _("Please remove \$security_groups and \$security_headings arrays from config.php file!");
-	} elseif (!$SysPrefs->db_ok && !$_SESSION["wa_current_user"]->can_access('SA_SOFTWAREUPGRADE'))
+	} elseif (!$SysPrefs->db_ok && !$_SESSION["wa_current_user"]->can_access('SA_SOFTWAREUPGRADE')) 
 	{
 		$msg = _('Access to application has been blocked until database upgrade is completed by system administrator.');
 	}
-
+	
 	if ($msg){
 		display_error($msg);
 		end_page(@$_REQUEST['popup']);
@@ -265,6 +265,7 @@ function check_page_security($page_security)
 
 	if (!$_SESSION["wa_current_user"]->can_access_page($page_security))
 	{
+
 		echo "<center><br><br><br><b>";
 		echo _("The security settings on your account do not permit you to access this function");
 		echo "</b>";
@@ -272,7 +273,7 @@ function check_page_security($page_security)
 		end_page(@$_REQUEST['popup']);
 		exit;
 	}
-	if (!$SysPrefs->db_ok
+	if (!$SysPrefs->db_ok 
 		&& !in_array($page_security, array('SA_SOFTWAREUPGRADE', 'SA_OPEN', 'SA_BACKUP')))
 	{
 		display_error(_('System is blocked after source upgrade until database is updated on System/Software Upgrade page'));
