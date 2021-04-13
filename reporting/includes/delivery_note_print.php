@@ -79,14 +79,9 @@ for ($i = $from; $i <= $to; $i++) {
     $result = get_customer_trans_details(ST_CUSTDELIVERY, $i);
     $SubTotal = 0;
 
-    $DisplaySubTot = number_format2($SubTotal, $dec);
-
     if ($packing_slip == 0) {
         $tax_items = get_trans_tax_details(ST_CUSTDELIVERY, $i);
         $first = true;
-
-        $DisplayTotal = number_format2($myrow["ov_freight"] + $myrow["ov_freight_tax"] + $myrow["ov_gst"] +
-            $myrow["ov_amount"], $dec);
     }
 
 ?>
@@ -184,10 +179,10 @@ for ($i = $from; $i <= $to; $i++) {
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="text-center">2,000</td>
-                    <td class="text-center">All goods must be paid for</td>
-                    <td class="text-center">30,000</td>
-                    <td class="text-center">20</td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
                 </tr>
                 </tbody>
             </table>
@@ -202,12 +197,11 @@ for ($i = $from; $i <= $to; $i++) {
                     <table class="table mb-0">
                         <thead>
                         <tr class="table-info">
-                            <td class="col-md-3 border-top-0"><strong>Item Description</strong></td>
-                            <td class="col-md-3 text-center border-top-0"><strong>Item Code</strong></td>
-                            <td class="col-3 text-right border-top-0"><strong>Qty Unit</strong></td>
-                            <td class="col-1 text-right border-top-0"><strong>Price</strong></td>
-                            <td class="col-2 text-right border-top-0"><strong>Discount %</strong></td>
-                            <td class="text-right border-top-0"><strong>Total</strong></td>
+                            <td class="border-top-0"><strong>Item Description</strong></td>
+                            <td class="border-top-0"  style="width: 15%;text-align: center"><strong>Qty Unit</strong></td>
+                            <td class="text-right border-top-0"><strong>Price</strong></td>
+                            <td class="border-top-0" style="width: 15%;"><strong>Discount %</strong></td>
+                            <td class="text-right border-top-0" style="width: 15%;"><strong>Total Incl</strong></td>
                         </tr>
                         </thead>
                         <tbody>
@@ -232,7 +226,6 @@ for ($i = $from; $i <= $to; $i++) {
                         ?>
                         <tr>
                             <td><span class="text-3"><?php echo $myrow2['StockDescription'];?></td>
-                            <td class="text-center"><?php echo $myrow2['StockLongDescription'];?></td>
                             <td class="text-center"><?php echo $DisplayQty.' '.$myrow2['units'];?></td>
                             <td class="text-center"><?php echo $DisplayPrice?></td>
                             <td class="text-right"><?php echo $DisplayDiscount?></td>
@@ -254,7 +247,7 @@ for ($i = $from; $i <= $to; $i++) {
                             </span>
                             </td>
                             <?php $DisplaySubTot = number_format2($SubTotal,$dec);?>
-                            <td colspan="4" class="text-right" style="width:10px !important;"><strong>Total Excl Amount</strong></td>
+                            <td colspan="3" class="text-right" style="width:10px !important;"><strong>Total Excl Amount</strong></td>
                             <td class="text-right"><?php echo $DisplaySubTot;?></td>
 
                         </tr>
@@ -271,18 +264,19 @@ for ($i = $from; $i <= $to; $i++) {
 
                         ?>
                         <tr>
-                           <td colspan="4" class="text-right"><strong>TAX <?php echo $tax_type_name;?></strong></td>
+                           <td colspan="3" class="text-right"><strong>TAX <?php echo $tax_type_name;?></strong></td>
                            <td class="text-right"><?php echo $DisplayTax;?></td>
                         </tr>
                         <?php }
 
-                        $DisplayTotal = number_format2(($myrow["ov_freight"] + $myrow["ov_gst"] +
-                                $myrow["ov_amount"]+$myrow["ov_freight_tax"]),$dec)
+                        $DisplayTotal = ($myrow["ov_freight"] + $myrow["ov_gst"] +
+                            $myrow["ov_amount"]+$myrow["ov_freight_tax"]);
                         ?>
 
                         <tr>
-                           <td colspan="4" class="text-right"><strong>Total Incl Amount</strong></td>
-                           <td class="text-right"><?php echo $DisplayTotal + $DisplayTax;?></td>
+                           <td colspan="3" class="text-right"><strong>Total Incl Amount</strong></td>
+                           <td class="text-right"><?php
+                               echo number_format2(($DisplayTax+$DisplayTotal),$dec);?></td>
                         </tr>
 
                         </tfoot>
@@ -318,7 +312,7 @@ for ($i = $from; $i <= $to; $i++) {
 <style>
     .tr-spacer
     {
-        height: 100px;
+       height: 100px;
     }
     .table td, .table th{
      vertical-align: bottom !important;

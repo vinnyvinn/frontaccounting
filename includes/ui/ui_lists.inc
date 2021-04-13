@@ -939,7 +939,7 @@ function sales_items_list($name, $selected_id=null, $all_option=false,
 function sales_items_list_cells($label, $name, $selected_id=null, $all_option=false, $submit_on_change=false, $editkey=false)
 {
 	if ($editkey)
-		set_editor('item', $name, $editkey);
+	 set_editor('item', $name, $editkey);
 
 	if ($label != null)
 		echo "<td>$label</td>\n";

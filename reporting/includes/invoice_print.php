@@ -282,10 +282,10 @@ while($row = db_fetch($range))
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="text-center">2,000</td>
-                    <td class="text-center">All goods must be paid for</td>
-                    <td class="text-center">30,000</td>
-                    <td class="text-center">20</td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
                 </tr>
                 </tbody>
             </table>
@@ -300,12 +300,11 @@ while($row = db_fetch($range))
                     <table class="table mb-0">
                         <thead>
                         <tr class="table-info">
-                            <td class="col-md-3 border-top-0"><strong>Item Description</strong></td>
-                            <td class="col-md-3 text-center border-top-0"><strong>Item Code</strong></td>
-                            <td class="col-3 text-right border-top-0"><strong>Qty Unit</strong></td>
-                            <td class="col-1 text-right border-top-0"><strong>Price</strong></td>
-                            <td class="col-2 text-right border-top-0"><strong>Discount %</strong></td>
-                            <td class="text-right border-top-0"><strong>Total</strong></td>
+                            <th class="border-top-0"><strong>Item Description</strong></th>
+                            <th class="border-top-0" style="width: 15%;text-align: center"><strong>Qty Unit</strong></th>
+                            <th class="text-right border-top-0"><strong>Price</strong></th>
+                            <th class="text-right border-top-0"  style="width: 15%;"><strong>Discount %</strong></th>
+                            <th class="text-right border-top-0"  style="width: 15%;"><strong>Total Incl</strong></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -330,8 +329,7 @@ while($row = db_fetch($range))
                         ?>
                         <tr>
                             <td><span class="text-3"><?php echo $myrow2['StockDescription'];?></td>
-                            <td class="text-center"><?php echo $myrow2['StockLongDescription'];?></td>
-                            <td class="text-center"><?php echo $DisplayQty.' '.$myrow2['units'];?></td>
+                            <td class="text-center" style="width: 15%"><?php echo $DisplayQty.' '.$myrow2['units'];?></td>
                             <td class="text-center"><?php echo $DisplayPrice?></td>
                             <td class="text-right"><?php echo $DisplayDiscount?></td>
                             <td class="text-right"><?php echo $DisplayNet?></td>
@@ -352,7 +350,7 @@ while($row = db_fetch($range))
                             </span>
                             </td>
                             <?php $DisplaySubTot = number_format2($SubTotal,$dec);?>
-                            <td colspan="4" class="text-right" style="width:10px !important;"><strong>Total Excl Amount</strong></td>
+                            <td colspan="3" class="text-right" style="width:10px !important;"><strong>Total Excl Amount</strong></td>
                             <td class="text-right"><?php echo $DisplaySubTot;?></td>
 
                         </tr>
@@ -361,7 +359,7 @@ while($row = db_fetch($range))
                         {
                             if ($tax_item['amount'] == 0)
                                 continue;
-                            $DisplayTax = number_format2($sign*$tax_item['amount'], $dec);
+                            $DisplayTax = number_format2($tax_item['amount'], $dec);
 
                             if ($SysPrefs->suppress_tax_rates() == 1)
                                 $tax_type_name = $tax_item['tax_type_name'];
@@ -371,18 +369,18 @@ while($row = db_fetch($range))
                             $tax_type_name = " (".$tax_item['rate']."%) ";
                         ?>
                         <tr>
-                           <td colspan="4" class="text-right"><strong>TAX <?php echo $tax_type_name;?></strong></td>
+                           <td colspan="3" class="text-right"><strong>TAX <?php echo $tax_type_name;?></strong></td>
                            <td class="text-right"><?php echo $DisplayTax;?></td>
                         </tr>
                         <?php }
 
-                        $DisplayTotal = number_format2(($myrow["ov_freight"] + $myrow["ov_gst"] +
-                                $myrow["ov_amount"]+$myrow["ov_freight_tax"]),$dec)
+                        $DisplayTotal = ($myrow["ov_freight"] + $myrow["ov_gst"] +
+                                $myrow["ov_amount"]+$myrow["ov_freight_tax"])
                         ?>
 
                         <tr>
-                           <td colspan="4" class="text-right"><strong>Total Incl Amount</strong></td>
-                           <td class="text-right"><?php echo $DisplayTotal + $DisplayTax;?></td>
+                           <td colspan="3" class="text-right"><strong>Total Incl Amount</strong></td>
+                           <td class="text-right"><?php echo number_format2(($DisplayTotal + $DisplayTax),$dec);?></td>
                         </tr>
 
                         </tfoot>

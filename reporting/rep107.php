@@ -28,7 +28,7 @@ include_once($path_to_root . "/sales/includes/sales_db.inc");
 function get_invoice_range($from, $to, $currency=false)
 {
 	global $SysPrefs;
-
+	
 	$ref = ($SysPrefs->print_invoice_no() == 1 ? "trans_no" : "reference");
 
 	$sql = "SELECT trans.trans_no, trans.reference";
@@ -142,7 +142,7 @@ function print_invoices()
 			$rep->NewPage();
 			// calculate summary start row for later use
 			$summary_start_row = $rep->bottomMargin + (15 * $rep->lineHeight);
-
+			
 			if ($rep->formData['prepaid'])
 			{
 				$result = get_sales_order_invoices($myrow['order_']);

@@ -57,7 +57,7 @@ function display_transfer_items($title, &$order)
 	display_heading($title);
     div_start('items_table');
 	start_table(TABLESTYLE, "width='80%'");
-	$th = array(_("Item Code"), _("Item Description"),_("Quantity"), _("Unit"), '');
+	$th = array(_("Item Code"), _("Item Description"),_("Price"),_("Quantity"), _("Unit"), '');
 	if (!$order->fixed_asset && count($order->line_items)) $th[] = '';
 	table_header($th);
 	$k = 0;  //row colour counter
@@ -78,6 +78,7 @@ function display_transfer_items($title, &$order)
 				label_cell($stock_item->stock_id);
 			else
 				view_stock_status_cell($stock_item->stock_id);
+    		amount_cell(200);
     		label_cell($stock_item->item_description);
            // amount_cell($stock_item->price);
     		qty_cell($stock_item->quantity, false, get_qty_dec($stock_item->stock_id));
@@ -117,6 +118,7 @@ function transfer_edit_item_controls(&$order, $line_no=-1)
 
 		hidden('stock_id', $_POST['stock_id']);
 		label_cell($_POST['stock_id']);
+		amount_cell($order->line_items[$id]->item_price);
 		label_cell($order->line_items[$id]->item_description);
 	    $Ajax->activate('items_table');
 	}

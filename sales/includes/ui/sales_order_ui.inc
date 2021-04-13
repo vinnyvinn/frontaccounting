@@ -274,6 +274,8 @@ function display_order_header(&$order, $editable, $date_text)
 		customer_branches_list_row(_("Branch:"),
 	  	  $_POST['customer_id'], 'branch_id', null, false, true, true, true);
 
+		//customer_branches_list_row(_("Salesman Rep:".$_POST['customer_id']));
+
 		if( ($order->customer_id != get_post('customer_id', -1)) ||
 			($order->Branch != get_post('branch_id', -1)) ||
 				list_updated('customer_id')) 
@@ -372,7 +374,7 @@ function display_order_header(&$order, $editable, $date_text)
 	customer_credit_row($_POST['customer_id'], $order->credit);
 
 	label_row(_("Customer Discount:"), ($order->default_discount * 100) . "%");
-
+	label_row(_("Salesman Rep:"), (get_salesman_name(get_salesman_id($_POST['customer_id']))));
 	table_section(3);
 	start_row();
 	if (($order->pos['cash_sale'] || $order->pos['credit_sale']) 

@@ -92,6 +92,15 @@ function get_branch($branch_id)
 
 	return db_fetch($result);
 }
+function get_salesman_id($debtor)
+{
+
+    $sql = "SELECT salesman FROM ".TB_PREF."cust_branch 
+		WHERE debtor_no = ".db_escape($debtor);
+
+	$result = db_query($sql, "Cannot retreive a salesman");
+	return db_fetch_row($result)[0];
+}
 
 function get_cust_branch($customer_id, $branch_code)
 {

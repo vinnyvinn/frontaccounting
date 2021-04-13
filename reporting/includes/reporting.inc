@@ -168,24 +168,23 @@ function print_link($link_text, $rep, $pars = array(), $dir = '',
 	if (user_graphic_links() && $icon)
 		$pars[0] = set_icon($icon, $pars[0]);
 
-    //$inv_url = $path_to_root.'/reporting/includes/test_invoice.php';
     if ($rep==107 && $link_text=='&Print Sales Invoice'){
-     return "<a target='_blank' href='$inv_url'>$pars[0]</a>";
+        return "<a target='_blank' href='$inv_url'>$pars[0]</a>";
     }
 
     if ($rep==110 && $link_text=='&Print Delivery Note')
-     return "<a target='_blank' href='$delivery_note_url'>$pars[0]</a>";
+        return "<a target='_blank' href='$delivery_note_url'>$pars[0]</a>";
 
     if ($rep==109 && $link_text=='&Print This Order')
-     return "<a target='_blank' href='$sales_order_url'>$pars[0]</a>";
+        return "<a target='_blank' href='$sales_order_url'>$pars[0]</a>";
 
-     if ($rep==111 && $link_text=='&Print This Quotation')
-         return "<a target='_blank' href='$quote_url'>$pars[0]</a>";
+    if ($rep==111 && $link_text=='&Print This Quotation')
+        return "<a target='_blank' href='$quote_url'>$pars[0]</a>";
 
-     if ($rep==209 && $link_text=='&Print This Order')
-         return "<a target='_blank' href='$po_url'>$pars[0]</a>";
+    if ($rep==209 && $link_text=='&Print This Order')
+        return "<a target='_blank' href='$po_url'>$pars[0]</a>";
 
-	 return "<a target='_blank' href='$url'$id$class $pars[1]>$pars[0]</a>";
+    return "<a target='_blank' href='$url'$id$class $pars[1]>$pars[0]</a>";
 
 
 }
