@@ -16,6 +16,7 @@ class SessionManager
 {
    	function sessionStart($name, $limit = 0, $path = '/', $domain = null, $secure = null)
 	{
+
 		// Set the cookie name
 		session_name($name);
 
@@ -51,10 +52,12 @@ class SessionManager
 		}
 		else
 		{
+
 			$_SESSION = array();
 			session_destroy();
 			session_start();
 		}
+
 	}
 
 	function preventHijacking()
@@ -175,6 +178,7 @@ function password_reset_success()
 
 function check_faillog()
 {
+
 	global $SysPrefs, $login_faillog;
 
 	$user = $_SESSION["wa_current_user"]->user;

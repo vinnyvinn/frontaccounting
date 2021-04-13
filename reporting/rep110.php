@@ -38,6 +38,7 @@ function print_deliveries()
 
 	$from = $_POST['PARAM_0'];
 	$to = $_POST['PARAM_1'];
+	$to = 3;
 	$email = $_POST['PARAM_2'];
 	$packing_slip = $_POST['PARAM_3'];
 	$comments = $_POST['PARAM_4'];

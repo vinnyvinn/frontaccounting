@@ -153,7 +153,7 @@ function display_po_header(&$order)
 
     if ($editable)
     {
-    	ref_row(_("Reference:"), 'ref', '', null, false, $order->trans_type, array('date'=> @$_POST['OrderDate']));
+    	ref_row_2(_("Reference:"), 'ref', '', null, false, $order->trans_type, array('date'=> @$_POST['OrderDate']));
     }
     else
     {

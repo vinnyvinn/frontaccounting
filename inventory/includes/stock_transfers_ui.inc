@@ -37,12 +37,13 @@ function display_order_header(&$order)
 	
 	locations_list_row(_("From Location:"), 'FromStockLocation', null, false, false, $order->fixed_asset);
 	locations_list_row(_("To Location:"), 'ToStockLocation', null,false, false, $order->fixed_asset);
+	customer_list_row(_("Customer:"), 'customer', null,false, false, $order->fixed_asset);
 
 	table_section(2, "50%");
 
     date_row(_("Date:"), 'AdjDate', '', true);
 
-	ref_row(_("Reference:"), 'ref', '', $Refs->get_next(ST_LOCTRANSFER, null, array('date'=>get_post('AdjDate'), 'location'=> get_post('FromStockLocation'))), false, ST_LOCTRANSFER);
+	ref_row_2(_("Reference:"), 'ref', '', $Refs->get_next(ST_LOCTRANSFER, null, array('date'=>get_post('AdjDate'), 'location'=> get_post('FromStockLocation'))), false, ST_LOCTRANSFER);
 
 	end_outer_table(1); // outer table
 }
@@ -56,7 +57,7 @@ function display_transfer_items($title, &$order)
 	display_heading($title);
     div_start('items_table');
 	start_table(TABLESTYLE, "width='80%'");
-	$th = array(_("Item Code"), _("Item Description"), _("Quantity"), _("Unit"), '');
+	$th = array(_("Item Code"), _("Item Description"),_("Quantity"), _("Unit"), '');
 	if (!$order->fixed_asset && count($order->line_items)) $th[] = '';
 	table_header($th);
 	$k = 0;  //row colour counter
@@ -78,6 +79,7 @@ function display_transfer_items($title, &$order)
 			else
 				view_stock_status_cell($stock_item->stock_id);
     		label_cell($stock_item->item_description);
+           // amount_cell($stock_item->price);
     		qty_cell($stock_item->quantity, false, get_qty_dec($stock_item->stock_id));
     		label_cell($stock_item->units);
 

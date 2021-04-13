@@ -358,7 +358,7 @@ function display_order_header(&$order, $editable, $date_text)
 		}
 	}
 
-	ref_row(_("Reference").':', 'ref', _('Reference number unique for this document type'), null, '', $order->trans_type, array('date'=> @$_POST['OrderDate']));
+    ref_row_2(_("Reference").':', 'ref', _('Reference number unique for this document type'), null, '', $order->trans_type, array('date'=> @$_POST['OrderDate']));
 
 	table_section(2);
 

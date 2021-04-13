@@ -330,7 +330,7 @@ end_row();
 start_row();
 
 if ($_SESSION['Items']->trans_no==0) {
-	ref_cells(_("Reference"), 'ref', '', null, "class='tableheader2'", false, ST_CUSTDELIVERY,
+    ref_cells_disabled(_("Reference"), 'ref', '', null, "class='tableheader2'", false, ST_CUSTDELIVERY,
 	array('customer' => $_SESSION['Items']->customer_id,
 			'branch' => $_SESSION['Items']->Branch,
 			'date' => get_post('DispatchDate')));

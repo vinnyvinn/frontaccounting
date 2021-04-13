@@ -1,7 +1,7 @@
 <?php
 /**********************************************************************
     Copyright (C) FrontAccounting, LLC.
-	Released under the terms of the GNU General Public License, GPL, 
+	Released under the terms of the GNU General Public License, GPL,
 	as published by the Free Software Foundation, either version 3 
 	of the License, or (at your option) any later version.
     This program is distributed in the hope that it will be useful,
@@ -28,6 +28,7 @@
 		$upper = $this->row - 2 * $this->lineHeight;
 		$lower = $this->bottomMargin + 8 * $this->lineHeight;
 		$iline1 = $upper - 7.5 * $this->lineHeight;
+
 		$iline2 = $iline1 - 8 * $this->lineHeight;
 		$iline3 = $iline2 - 1.5 * $this->lineHeight;
 		$iline4 = $iline3 - 1.5 * $this->lineHeight;
@@ -56,6 +57,7 @@
 		$this->Line($iline6);
 		$this->Line($iline7);
 		$this->LineTo($this->leftMargin, $iline2 ,$this->leftMargin, $iline4);
+
 		$col = $this->leftMargin;
 		for ($i = 0; $i < 5; $i++)
 		{
@@ -156,6 +158,8 @@
 		$this->NewLine();
 		$this->TextWrapLines($ccol, $icol - $ccol, $Addr1['address']);
 
+
+
 // address2
 		$this->row = $temp;
 		$this->Text($mcol, $Addr2['name']);
@@ -166,7 +170,6 @@
 		$col = $this->leftMargin;
 		foreach($aux_info as $info_header => $info_content)
 		{
-
 			$this->row = $iline2 - $this->lineHeight - 1;
 			$this->TextWrap($col, $this->row, $width, $info_header, 'C');
 			$this->row = $iline3 - $this->lineHeight - 1;
@@ -194,6 +197,7 @@
 
 		foreach ($Footer as $line => $txt)
 		{
+
 			if (!is_numeric($line))	// title => link
 			{
 				$this->fontSize -= 2;

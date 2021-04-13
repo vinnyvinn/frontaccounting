@@ -90,7 +90,6 @@ function handle_new_order()
 
 if (isset($_POST['Process']))
 {
-
 	$tr = &$_SESSION['transfer_items'];
 	$input_error = 0;
 

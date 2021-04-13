@@ -14,7 +14,8 @@
 // or display_note(print_document_link($order_no, _("Print this order")));
 // You only need full parameter list for invoices/credit notes
 
-function print_document_link($doc_no, $link_text, $link=true, $type_no, 
+
+function print_document_link($doc_no, $link_text, $link=true, $type_no,
 	$icon=false, $class='printlink', $id='', $email=0, $extra=0)
 {
 	global $path_to_root;
@@ -65,7 +66,7 @@ function print_document_link($doc_no, $link_text, $link=true, $type_no,
 			// from, to, currency, email, paylink, comments, orientation
 			$ar = array(
 				'PARAM_0' => $doc_no, 
-				'PARAM_1' => $doc_no, 
+				'PARAM_1' => $doc_no,
 				'PARAM_2' => '', 
 				'PARAM_3' => $email, 
 				'PARAM_4' => '',
@@ -142,6 +143,11 @@ function print_link($link_text, $rep, $pars = array(), $dir = '',
 	global $path_to_root, $SysPrefs;
 
 	$url = $dir == '' ?  $path_to_root.'/reporting/prn_redirect.php?' : $dir;
+    $inv_url = $path_to_root.'/reporting/includes/invoice_print.php?';
+    $delivery_note_url = $path_to_root.'/reporting/includes/delivery_note_print.php?';
+    $sales_order_url = $path_to_root.'/reporting/includes/sales_order_print.php?';
+    $quote_url = $path_to_root.'/reporting/includes/sales_quotation_print.php?';
+    $po_url = $path_to_root.'/reporting/includes/purchase_order_print.php?';
 
 	$id = default_focus($id);
 	foreach($pars as $par => $val) {
@@ -149,7 +155,11 @@ function print_link($link_text, $rep, $pars = array(), $dir = '',
 	}
 	$pars[] = 'REP_ID='.urlencode($rep);
 	$url .= implode ('&', $pars);
-
+    $inv_url .= implode ('&', $pars);
+    $delivery_note_url .= implode ('&', $pars);
+    $sales_order_url .= implode ('&', $pars);
+    $quote_url .= implode ('&', $pars);
+    $po_url .= implode ('&', $pars);
 	if ($class != '')
 		$class = $SysPrefs->pdf_debug ? '' : " class='$class'";
 	if ($id != '')
@@ -158,7 +168,26 @@ function print_link($link_text, $rep, $pars = array(), $dir = '',
 	if (user_graphic_links() && $icon)
 		$pars[0] = set_icon($icon, $pars[0]);
 
-	return "<a target='_blank' href='$url'$id$class $pars[1]>$pars[0]</a>";
+    //$inv_url = $path_to_root.'/reporting/includes/test_invoice.php';
+    if ($rep==107 && $link_text=='&Print Sales Invoice'){
+     return "<a target='_blank' href='$inv_url'>$pars[0]</a>";
+    }
+
+    if ($rep==110 && $link_text=='&Print Delivery Note')
+     return "<a target='_blank' href='$delivery_note_url'>$pars[0]</a>";
+
+    if ($rep==109 && $link_text=='&Print This Order')
+     return "<a target='_blank' href='$sales_order_url'>$pars[0]</a>";
+
+     if ($rep==111 && $link_text=='&Print This Quotation')
+         return "<a target='_blank' href='$quote_url'>$pars[0]</a>";
+
+     if ($rep==209 && $link_text=='&Print This Order')
+         return "<a target='_blank' href='$po_url'>$pars[0]</a>";
+
+	 return "<a target='_blank' href='$url'$id$class $pars[1]>$pars[0]</a>";
+
+
 }
 
 /*

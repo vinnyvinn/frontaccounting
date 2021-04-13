@@ -195,7 +195,7 @@ function get_customer_currency($customer_id=null, $branch_id=null)
     	WHERE " .(isset($branch_id) ? "branch_code = ".db_escape($branch_id) : "cust.debtor_no = ".db_escape($customer_id));
 
 	$result = db_query($sql, "Retreive currency of customer $customer_id");
-
+	
 	$myrow=db_fetch_row($result);
 	return $myrow ? $myrow[0] : get_company_currency();
 }

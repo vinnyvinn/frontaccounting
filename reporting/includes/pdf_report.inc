@@ -424,6 +424,7 @@ class FrontReport extends Cpdf
 			$this->formData['rep_lang'] = $contacts[0]['lang'];
 		}
 	}
+
 	/*
 		Set header handler
 	*/

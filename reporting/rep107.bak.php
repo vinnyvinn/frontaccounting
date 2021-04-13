@@ -64,16 +64,14 @@ function print_invoices()
 	
 	$show_this_payment = true; // include payments invoiced here in summary
 
-	include_once($path_to_root . "/reporting/includes/pdf_report.inc");
-
-	$from = $_POST['PARAM_0'];
-	$to = $_POST['PARAM_1'];
-	$currency = $_POST['PARAM_2'];
-	$email = $_POST['PARAM_3'];
-	$pay_service = $_POST['PARAM_4'];
-	$comments = $_POST['PARAM_5'];
-	$customer = $_POST['PARAM_6'];
-	$orientation = $_POST['PARAM_7'];
+	$from = $_GET['PARAM_0'];
+	$to = $_GET['PARAM_1'];
+	$currency = $_GET['PARAM_2'];
+	$email = $_GET['PARAM_3'];
+	$pay_service = $_GET['PARAM_4'];
+	$comments = $_GET['PARAM_5'];
+	$customer = $_GET['PARAM_6'];
+	$orientation = $_GET['PARAM_7'];
 
 	if (!$from || !$to) return;
 
@@ -109,7 +107,7 @@ function print_invoices()
 	while($row = db_fetch($range))
 	{
 			if (!exists_customer_trans(ST_SALESINVOICE, $row['trans_no']))
-			  continue;
+				continue;
 			$sign = 1;
 			$myrow = get_customer_trans($row['trans_no'], ST_SALESINVOICE);
 
@@ -319,11 +317,10 @@ function print_invoices()
                 $rep->TextCol(3, 6, 'Total Incl Amount',- 2);
 				$rep->TextCol(6, 7, number_format2($myrow['prep_amount'], $dec), -2);
 			}
-
 			// $rep->textWrap('eeeeeeeeeeeee');
 //			$words = price_in_words($rep->formData['prepaid'] ? $myrow['prep_amount'] : $myrow['Total']
 //				, array( 'type' => ST_SALESINVOICE, 'currency' => $myrow['curr_code']));
-        //$words = "Any exceptions, errors or change off address should be promtly advised to the company. Under no circumstances will the above goods be returned.Above goods received and accepted in good order and condition.All goods remain the property of the seller until payment is received in full.";
+        //$words = "Any exceptions, errors or change of address should be promtly advised to the company. Under no circumstances will the above goods be returned.Above goods received and accepted in good order and condition.All goods remain the property of the seller until payment is received in full.";
         $words = "Any exceptions, errors or change of address should be promptly";
         $words1 = "advised to the company.Under no circumstances will the above goods be";
         $words2 = "returned. Above goods received and accepted in good order and condition.";

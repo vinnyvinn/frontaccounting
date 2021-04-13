@@ -772,6 +772,52 @@ function ref_cells($label, $name, $title=null, $init=null, $params=null, $submit
 	}
 }
 
+
+function ref_cells_disabled($label, $name, $title=null, $init=null, $params=null, $submit_on_change=false, $type=null, $context=null)
+{
+    global $Ajax, $Refs;
+
+    if (isset($type)) {
+        if (empty($_POST[$name.'_list'])) // restore refline id
+            $_POST[$name.'_list'] = $Refs->reflines->find_refline_id(empty($_POST[$name]) ? $init : $_POST[$name], $type);
+
+        if (empty($_POST[$name])) // initialization
+        {
+            if (isset($init))
+            {
+                $_POST[$name] = $init;
+            } else {
+                $_POST[$name] = $Refs->get_next($type, $_POST[$name.'_list'], $context);
+            }
+            $Ajax->addUpdate(true, $name, $_POST[$name]);
+        }
+
+        if (check_ui_refresh($name)) { // call context changed
+            $_POST[$name] = $Refs->normalize($_POST[$name], $type, $context, $_POST[$name.'_list']);
+            $Ajax->addUpdate(true, $name, $_POST[$name]);
+        }
+
+        if ($Refs->reflines->count($type)>1) {
+            if (list_updated($name.'_list')) {
+                $_POST[$name] = $Refs->get_next($type, $_POST[$name.'_list'], $context);
+                $Ajax->addUpdate(true, $name, $_POST[$name]);
+            }
+            $list = refline_list($name.'_list', $type);
+        } else {
+            $list = '';
+        }
+
+        if (isset($label))
+            label_cell($label, $params);
+
+        label_cell($list."<input name='".$name."' ".
+            "value='".@$_POST[$name]."'readonly size=16 maxlength=35>");
+    }
+    else // just wildcard ref field (e.g. for global inquires)
+    {
+        text_cells_ex($label, $name, 16, 35, $init, $title, $params, null, $submit_on_change);
+    }
+}
 //-----------------------------------------------------------------------------------
 
 function ref_row($label, $name, $title=null, $init=null, $submit_on_change=false, $type=null, $context = null)
@@ -781,6 +827,12 @@ function ref_row($label, $name, $title=null, $init=null, $submit_on_change=false
 	echo "</tr>\n";
 }
 
+function ref_row_2($label, $name, $title=null, $init=null, $submit_on_change=false, $type=null, $context = null)
+{
+    echo "<tr><td class='label'>$label</td>";
+    ref_cells_disabled(null, $name, $title, $init, null, $submit_on_change, $type, $context);
+    echo "</tr>\n";
+}
 //-----------------------------------------------------------------------------------
 
 function percent_row($label, $name, $init=null)

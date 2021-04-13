@@ -126,7 +126,7 @@ if (isset($_GET['AddedID'])) {
 
 	submenu_view(_("&View This Order"), ST_SALESORDER, $order_no);
 
-	submenu_print(_("&Print This Order"), ST_SALESORDER, $order_no, 'prtopt');
+    submenu_print(_("&Print This Order"), ST_SALESORDER, $order_no, 'prtopt');
 	submenu_print(_("&Email This Order"), ST_SALESORDER, $order_no, null, 1);
 	set_focus('prtopt');
 	
@@ -227,7 +227,7 @@ if (isset($_GET['AddedID'])) {
 
 	submenu_view(_("&View This Invoice"), ST_SALESINVOICE, $invoice);
 
-	submenu_print(_("&Print Sales Invoice"), ST_SALESINVOICE, $invoice."-".ST_SALESINVOICE, 'prtopt');
+	submenu_print_(_("&Print Sales Invoice"), ST_SALESINVOICE, $invoice."-".ST_SALESINVOICE, 'prtopt');
 	submenu_print(_("&Email Sales Invoice"), ST_SALESINVOICE, $invoice."-".ST_SALESINVOICE, null, 1);
 	set_focus('prtopt');
 

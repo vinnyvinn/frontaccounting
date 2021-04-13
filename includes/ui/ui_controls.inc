@@ -290,6 +290,11 @@ function submenu_print($title, $type, $number, $id=null, $email=0, $extra=0)
 {
 	display_note(print_document_link($number, $title, true, $type, false, 'printlink', $id, $email, $extra), 0, 1);
 }
+function submenu_print_($title, $type, $number, $id=null, $email=0, $extra=0)
+{
+
+	display_note(print_document_link($number, $title, true, $type, false, 'printlink', $id, $email, $extra), 0, 1);
+}
 //-----------------------------------------------------------------------------------
 
 function hyperlink_params($target, $label, $params, $center=true)

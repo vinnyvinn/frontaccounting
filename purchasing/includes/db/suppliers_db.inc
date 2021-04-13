@@ -159,11 +159,44 @@ function get_supplier_accounts($supplier_id)
 function get_supplier_contacts($supplier_id, $action=null)
 {
 	$results = array();
-	$res = get_crm_persons('supplier', $action, $supplier_id);
+	$res = crm_contacts('supplier', $action, $supplier_id);
 	while($contact = db_fetch($res))
 		$results[] = $contact;
 
 	return $results;
+}
+
+function crm_contacts($type=null, $action=null, $entity=null, $person=null, $unique=false){
+    $sql = "SELECT t.*, p.*, r.id as contact_id FROM ".TB_PREF."crm_persons p,"
+        .TB_PREF."crm_categories t, "
+        .TB_PREF."crm_contacts r WHERE ";
+    $sel = array('r.type=t.type', 'r.action=t.action', 'r.person_id=p.id');
+
+    if ($type)
+        $sel[] = 't.type='.db_escape($type);
+
+    if ($action)
+        $sel[] = 't.action='.db_escape($action);
+
+    if ($entity)
+        $sel[] = 'r.entity_id='.db_escape($entity);
+
+    if ($person)
+        $sel[] = 'r.person_id='.db_escape($person);
+
+    $sql .= implode (" AND ", $sel);
+
+    if ($unique)
+        $sql .= " GROUP BY person_id";
+    else
+        $sql .= " ORDER BY contact_id";
+
+    $result = db_query($sql, "Can't get crm persons");
+    // fallback to general contacts
+    if (!db_num_rows($result) && $action && $action != 'general')
+        return crm_contacts($type, 'general', $entity, $person, $unique);
+    else
+        return $result;
 }
 
 function get_current_supp_credit($supplier_id)

@@ -21,6 +21,7 @@
 			'name' => @$this->formData['br_name'] ? $this->formData['br_name'] : @$this->formData['DebtorName'],
 			'address' => @$this->formData['br_address'] ? $this->formData['br_address'] : @$this->formData['address']
 	);
+
 	$Addr2 = array(
 			'title' => _("Delivered To"),
 			'name' => @$this->formData['deliver_to'],
