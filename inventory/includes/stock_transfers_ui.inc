@@ -1,12 +1,12 @@
 <?php
 /**********************************************************************
     Copyright (C) FrontAccounting, LLC.
-	Released under the terms of the GNU General Public License, GPL, 
-	as published by the Free Software Foundation, either version 3 
+	Released under the terms of the GNU General Public License, GPL,
+	as published by the Free Software Foundation, either version 3
 	of the License, or (at your option) any later version.
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
     See the License here <http://www.gnu.org/licenses/gpl-3.0.html>.
 ***********************************************************************/
 include_once($path_to_root . "/includes/ui.inc");
@@ -34,7 +34,7 @@ function display_order_header(&$order)
 	start_outer_table(TABLESTYLE, "width='70%'");
 
 	table_section(1);
-	
+
 	locations_list_row(_("From Location:"), 'FromStockLocation', null, false, false, $order->fixed_asset);
 	locations_list_row(_("To Location:"), 'ToStockLocation', null,false, false, $order->fixed_asset);
 	customer_list_row(_("Customer:"), 'customer', null,false, false, $order->fixed_asset);
@@ -57,7 +57,7 @@ function display_transfer_items($title, &$order)
 	display_heading($title);
     div_start('items_table');
 	start_table(TABLESTYLE, "width='80%'");
-	$th = array(_("Item Code"), _("Item Description"),_("Price"),_("Quantity"), _("Unit"), '');
+	$th = array(_("Item Code"), _("Item Description"),_("Quantity"), _("Unit"), '');
 	if (!$order->fixed_asset && count($order->line_items)) $th[] = '';
 	table_header($th);
 	$k = 0;  //row colour counter
@@ -71,7 +71,7 @@ function display_transfer_items($title, &$order)
 		{
 			if (in_array($stock_item->stock_id, $low_stock))
 				start_row("class='stockmankobg'");	// notice low stock status
-			else 
+			else
 				alt_table_row_color($k);
 
 			if ($order->fixed_asset)
@@ -124,6 +124,7 @@ function transfer_edit_item_controls(&$order, $line_no=-1)
 	}
 	else
 	{
+
 		if ($order->fixed_asset)
 			stock_disposable_fa_list_cells(null, 'stock_id', null, false, true, $order->line_items);
 		else

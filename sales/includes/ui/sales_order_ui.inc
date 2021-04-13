@@ -482,6 +482,7 @@ function sales_order_item_controls(&$order, &$rowcounter, $line_no=-1)
 	$id = find_submit('Edit');
 	if ($line_no!=-1 && $line_no == $id) // edit old line
 	{
+
 		$_POST['stock_id'] = $order->line_items[$id]->stock_id;
 		$dec = get_qty_dec($_POST['stock_id']);
 		$_POST['qty'] = number_format2($order->line_items[$id]->qty_dispatched, $dec);

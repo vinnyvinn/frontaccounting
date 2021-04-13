@@ -969,3 +969,72 @@
 [13-Apr-2021 18:01:57 Europe/Berlin] 1:admin:rep110.php:37: include_once(): Failed opening '../reporting/includes/pdf_report.inc' for inclusion (include_path='.:/usr/share/php')
 [13-Apr-2021 18:01:57 Europe/Berlin] 1:admin:current_user.inc:387: include_once(../inventory/includes/db/items_units_db.inc): failed to open stream: No such file or directory
 [13-Apr-2021 18:01:57 Europe/Berlin] 1:admin:current_user.inc:387: include_once(): Failed opening '../inventory/includes/db/items_units_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:22: include_once(../includes/session.inc): failed to open stream: No such file or directory
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:22: include_once(): Failed opening '../includes/session.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:23: include_once(../includes/date_functions.inc): failed to open stream: No such file or directory
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:23: include_once(): Failed opening '../includes/date_functions.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:24: include_once(../includes/data_checks.inc): failed to open stream: No such file or directory
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:24: include_once(): Failed opening '../includes/data_checks.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:25: include_once(../sales/includes/sales_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:25: include_once(): Failed opening '../sales/includes/sales_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:37: include_once(../reporting/includes/pdf_report.inc): failed to open stream: No such file or directory
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:rep110.php:37: include_once(): Failed opening '../reporting/includes/pdf_report.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:current_user.inc:387: include_once(../inventory/includes/db/items_units_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 19:02:23 Europe/Berlin] 1:admin:current_user.inc:387: include_once(): Failed opening '../inventory/includes/db/items_units_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 19:45:44 Europe/Berlin] 1:admin:transfers.php:197: Unhandled exception [0]: Call to undefined function find_submit().
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:22: include_once(../includes/session.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:22: include_once(): Failed opening '../includes/session.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:23: include_once(../includes/date_functions.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:23: include_once(): Failed opening '../includes/date_functions.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:24: include_once(../includes/data_checks.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:24: include_once(): Failed opening '../includes/data_checks.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:25: include_once(../sales/includes/sales_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:25: include_once(): Failed opening '../sales/includes/sales_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:67: include_once(../reporting/includes/pdf_report.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:48:52 Europe/Berlin] 1:admin:rep107.php:67: include_once(): Failed opening '../reporting/includes/pdf_report.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:22: include_once(../includes/session.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:22: include_once(): Failed opening '../includes/session.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:23: include_once(../includes/date_functions.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:23: include_once(): Failed opening '../includes/date_functions.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:24: include_once(../includes/data_checks.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:24: include_once(): Failed opening '../includes/data_checks.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:25: include_once(../sales/includes/sales_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:25: include_once(): Failed opening '../sales/includes/sales_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:67: include_once(../reporting/includes/pdf_report.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:49:10 Europe/Berlin] 1:admin:rep107.php:67: include_once(): Failed opening '../reporting/includes/pdf_report.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:22: include_once(../includes/session.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:22: include_once(): Failed opening '../includes/session.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:23: include_once(../includes/date_functions.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:23: include_once(): Failed opening '../includes/date_functions.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:24: include_once(../includes/data_checks.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:24: include_once(): Failed opening '../includes/data_checks.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:25: include_once(../sales/includes/sales_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:25: include_once(): Failed opening '../sales/includes/sales_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:67: include_once(../reporting/includes/pdf_report.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:rep107.php:67: include_once(): Failed opening '../reporting/includes/pdf_report.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:current_user.inc:387: include_once(../inventory/includes/db/items_units_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:10 Europe/Berlin] 1:admin:current_user.inc:387: include_once(): Failed opening '../inventory/includes/db/items_units_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:22: include_once(../includes/session.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:22: include_once(): Failed opening '../includes/session.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:23: include_once(../includes/date_functions.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:23: include_once(): Failed opening '../includes/date_functions.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:24: include_once(../includes/data_checks.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:24: include_once(): Failed opening '../includes/data_checks.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:25: include_once(../sales/includes/sales_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:25: include_once(): Failed opening '../sales/includes/sales_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:67: include_once(../reporting/includes/pdf_report.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:rep107.php:67: include_once(): Failed opening '../reporting/includes/pdf_report.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:current_user.inc:387: include_once(../inventory/includes/db/items_units_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:51:30 Europe/Berlin] 1:admin:current_user.inc:387: include_once(): Failed opening '../inventory/includes/db/items_units_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:22: include_once(../includes/session.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:22: include_once(): Failed opening '../includes/session.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:23: include_once(../includes/date_functions.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:23: include_once(): Failed opening '../includes/date_functions.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:24: include_once(../includes/data_checks.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:24: include_once(): Failed opening '../includes/data_checks.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:25: include_once(../sales/includes/sales_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:25: include_once(): Failed opening '../sales/includes/sales_db.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:67: include_once(../reporting/includes/pdf_report.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:rep107.php:67: include_once(): Failed opening '../reporting/includes/pdf_report.inc' for inclusion (include_path='.:/usr/share/php')
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:current_user.inc:387: include_once(../inventory/includes/db/items_units_db.inc): failed to open stream: No such file or directory
+[13-Apr-2021 20:52:23 Europe/Berlin] 1:admin:current_user.inc:387: include_once(): Failed opening '../inventory/includes/db/items_units_db.inc' for inclusion (include_path='.:/usr/share/php')

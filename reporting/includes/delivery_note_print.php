@@ -83,7 +83,7 @@ for ($i = $from; $i <= $to; $i++) {
         $tax_items = get_trans_tax_details(ST_CUSTDELIVERY, $i);
         $first = true;
     }
-
+    $logo = company_path() . "/images/" . $formData['coy_logo'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,7 +109,7 @@ for ($i = $from; $i <= $to; $i++) {
     <header>
         <div class="row align-items-center">
             <div class="col-sm-7 text-center text-sm-left mb-3 mb-sm-0">
-            <img id="logo" src="/themes/default/images/erp.png" title="WizERP" alt="WizERP" width="132px"/>
+                <img id="logo" src="<?php echo isset($formData['coy_logo']) ? $logo : '/themes/default/images/erp.png' ;?>" title="WizERP" alt="WizERP" width="132px"/>
                 <address>
                     <strong><?php
                         echo $company['coy_name'];?></strong><br />

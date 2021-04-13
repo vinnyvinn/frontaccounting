@@ -189,6 +189,8 @@ while($row = db_fetch($range))
 //        $rep->TextCol(6, 7, number_format2($myrow['prep_amount'], $dec), -2);
 //    }
 
+    $logo = company_path() . "/images/" . $formData['coy_logo'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -214,7 +216,7 @@ while($row = db_fetch($range))
     <header>
         <div class="row align-items-center">
             <div class="col-sm-7 text-center text-sm-left mb-3 mb-sm-0">
-            <img id="logo" src="/themes/default/images/erp.png" title="WizERP" alt="WizERP" width="132px"/>
+            <img id="logo" src="<?php echo isset($formData['coy_logo']) ? $logo : '/themes/default/images/erp.png' ;?>" title="WizERP" alt="WizERP" width="132px"/>
                 <address>
                     <strong><?php
                         echo $company['coy_name'];?></strong><br />
