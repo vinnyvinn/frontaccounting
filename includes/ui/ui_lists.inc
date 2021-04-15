@@ -834,7 +834,7 @@ function stock_items_list($name, $selected_id=null, $all_option=false,
 	if ($editkey)
 		set_editor('item', $name, $editkey);
 
-	$ret = combo_input($name, $selected_id, $sql, 'stock_id', 's.description',
+	$ret = combo_input($name, $selected_id, $sql, 'stock_id',  's.description',
 		array_merge(
 		  array(
 			'format' => '_format_stock_items',

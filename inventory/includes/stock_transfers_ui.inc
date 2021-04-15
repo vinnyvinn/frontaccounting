@@ -37,7 +37,7 @@ function display_order_header(&$order)
 
 	locations_list_row(_("From Location:"), 'FromStockLocation', null, false, false, $order->fixed_asset);
 	locations_list_row(_("To Location:"), 'ToStockLocation', null,false, false, $order->fixed_asset);
-	customer_list_row(_("Customer:"), 'customer', null,false, false, $order->fixed_asset);
+	customer_list_row(_("Customer:"), 'customer_id', null,false, false, $order->fixed_asset);
 
 	table_section(2, "50%");
 
@@ -57,16 +57,21 @@ function display_transfer_items($title, &$order)
 	display_heading($title);
     div_start('items_table');
 	start_table(TABLESTYLE, "width='80%'");
-	$th = array(_("Item Code"), _("Item Description"),_("Quantity"), _("Unit"), '');
+	$th = array(_("Item Code"), _("Item Description"),_("Price"),_("Quantity"), _("Unit"), _("Total"),'');
 	if (!$order->fixed_asset && count($order->line_items)) $th[] = '';
 	table_header($th);
 	$k = 0;  //row colour counter
+    $total = 0;
 
 	$low_stock = $order->check_qoh($_POST['FromStockLocation'], $_POST['AdjDate'], true);
+	//var_dump($low_stock);
+	//exit();
 	$id = find_submit('Edit');
 	foreach ($order->line_items as $line_no=>$stock_item)
 	{
 
+        $line_total = round($stock_item->quantity * get_item_price_by_stock_id($stock_item->stock_id),
+            user_price_dec());
 		if ($id != $line_no)
 		{
 			if (in_array($stock_item->stock_id, $low_stock))
@@ -78,11 +83,12 @@ function display_transfer_items($title, &$order)
 				label_cell($stock_item->stock_id);
 			else
 				view_stock_status_cell($stock_item->stock_id);
-    		amount_cell(200);
+    		amount_cell(get_item_price_by_stock_id($stock_item->stock_id));
     		label_cell($stock_item->item_description);
-           // amount_cell($stock_item->price);
     		qty_cell($stock_item->quantity, false, get_qty_dec($stock_item->stock_id));
     		label_cell($stock_item->units);
+            amount_cell($line_total);
+         //   amount_cell(get_item_price_by_stock_id($stock_item->stock_id) * $stock_item->quantity);
 
 	     	if (!$order->fixed_asset)
 				edit_button_cell("Edit$line_no", _("Edit"),	_('Edit document line'));
@@ -91,10 +97,19 @@ function display_transfer_items($title, &$order)
 		}
 		else
 			transfer_edit_item_controls($order, $line_no);
+
+        $total += $line_total;
 	}
 
 	if ($id == -1)
 		transfer_edit_item_controls($order);
+
+    start_row();
+    $dispTotal = number_format2($total,user_price_dec());
+
+    label_cells(_("Amount Total"), $dispTotal, "colspan=5 align=right","align=right");
+    submit_cells('update', _("Update"), "colspan=2 align='left'", _("Refresh"), true);
+    end_row();
 
     end_table();
 	if ($low_stock)
@@ -115,10 +130,11 @@ function transfer_edit_item_controls(&$order, $line_no=-1)
 		$_POST['stock_id'] = $order->line_items[$id]->stock_id;
 		$_POST['qty'] = qty_format($order->line_items[$id]->quantity, $order->line_items[$id]->stock_id, $dec);
 		$_POST['units'] = $order->line_items[$id]->units;
+		$_POST['price'] = get_item_price_by_stock_id($_POST['stock_id']);
 
 		hidden('stock_id', $_POST['stock_id']);
 		label_cell($_POST['stock_id']);
-		amount_cell($order->line_items[$id]->item_price);
+		amount_cell($_POST['price']);
 		label_cell($order->line_items[$id]->item_description);
 	    $Ajax->activate('items_table');
 	}
@@ -146,9 +162,13 @@ function transfer_edit_item_controls(&$order, $line_no=-1)
 		hidden('qty', 1);
 		qty_cell(1, false, 0);
 	} else
-		small_qty_cells(null, 'qty', $_POST['qty'], null, null, $dec);
+    {
+        amount_cell(get_item_price_by_stock_id($_POST['stock_id'])) ;
+        small_qty_cells(null, 'qty', $_POST['qty'], null, null, $dec);
+    }
 
 	label_cell($_POST['units'], '', 'units');
+    amount_cell(get_item_price_by_stock_id($_POST['stock_id']));
 
 	if ($id != -1)
 	{
@@ -161,6 +181,7 @@ function transfer_edit_item_controls(&$order, $line_no=-1)
 		submit_cells('AddItem', _("Add Item"), "colspan=2", _('Add new item to document'), true);
 
 	end_row();
+
 }
 
 

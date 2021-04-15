@@ -18,6 +18,10 @@ class inventory_app extends application
 		$this->add_module(_("Transactions"));
 		$this->add_lapp_function(0, _("Inventory Location &Transfers"),
 			"inventory/transfers.php?NewTransfer=1", 'SA_LOCATIONTRANSFER', MENU_TRANSACTION);
+
+		$this->add_lapp_function(0, _("Consignment Delivery"),
+			"inventory/consignments.php?NewConsignment=1", 'SA_LOCATIONTRANSFER', MENU_TRANSACTION);
+
 		$this->add_lapp_function(0, _("Inventory &Adjustments"),
 			"inventory/adjustments.php?NewAdjustment=1", 'SA_INVENTORYADJUSTMENT', MENU_TRANSACTION);
 

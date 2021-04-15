@@ -129,12 +129,15 @@ function get_banking_trans_view_str($type, $trans_no, $label="",
 function get_inventory_trans_view_str($type, $trans_no, $label="", 
 	$icon=false, $class='', $id='')
 {
+   $url = '../../reporting/includes/consignment_print.php?trans_no='.$trans_no;
 	$viewer = "inventory/view/";
 
 	if ($type == ST_INVADJUST)
 		$viewer .= "view_adjustment.php";
-	elseif ($type == ST_LOCTRANSFER)
-		$viewer .= "view_transfer.php";
+	elseif ($type == ST_LOCTRANSFER && isset($_GET['type']))
+        return "<a target='_blank' href='$url'>Print Consignment</a>";
+    elseif ($type == ST_LOCTRANSFER)
+        $viewer .= "view_transfer.php";
 	else
 		return null;
 	$viewer .= "?trans_no=$trans_no";
@@ -221,19 +224,19 @@ function get_trans_view_str($type, $trans_no, $label="", $icon=false,
 {
 	$view_str = get_customer_trans_view_str($type, $trans_no, $label, $icon, $class, $id);
 	if ($view_str != null)
-		return $view_str;
+	    return $view_str;
 
 	$view_str = get_supplier_trans_view_str($type, $trans_no, $label, $icon, $class, $id);
 	if ($view_str != null)
-		return $view_str;
+	    return $view_str;
 
 	$view_str = get_banking_trans_view_str($type, $trans_no, $label, $icon, $class, $id);
 	if ($view_str != null)
-		return $view_str;
+	    return $view_str;
 
 	$view_str = get_inventory_trans_view_str($type, $trans_no, $label, $icon, $class, $id);
 	if ($view_str != null)
-		return $view_str;
+	    return $view_str;
 
 	$view_str = get_manufacturing_trans_view_str($type, $trans_no, $label, $icon, $class, $id);
 	if ($view_str != null)

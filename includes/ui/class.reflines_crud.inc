@@ -44,8 +44,8 @@ class fa_reflines extends simple_crud_view {
 		$k = 0;
 		$data = $this->data_set->get_all(check_value('show_inactive') ? null : '!inactive', array('trans_type', 'prefix'));
 
-		if (!$data) return false;
 
+		if (!$data) return false;
 		while ($rec = db_fetch($data))
 		{
    			alt_table_row_color($k);

@@ -26,14 +26,9 @@ if ($SysPrefs->use_popup_windows)
 if (user_use_date_picker())
 	$js .= get_js_date_picker();
 
-if (isset($_GET['NewTransfer'])) {
-	if (isset($_GET['FixedAsset'])) {
-		$page_security = 'SA_ASSETTRANSFER';
-		$_SESSION['page_title'] = _($help_context = "Fixed Assets Location Transfers");
-	}
-	else {
-		$_SESSION['page_title'] = _($help_context = "Inventory Location Transfers");
-	}
+if (isset($_GET['NewConsignment'])) {
+    $page_security = 'SA_ASSETTRANSFER';
+     $_SESSION['page_title'] = _($help_context = "Consignment Delivery");
 }
 page($_SESSION['page_title'], false, false, "", $js);
 
@@ -48,15 +43,15 @@ if (isset($_GET['AddedID']))
 	$trans_no = $_GET['AddedID'];
 	$trans_type = ST_LOCTRANSFER;
 
-	display_notification_centered(_("Inventory transfer has been processed"));
-	display_note(get_trans_view_str($trans_type, $trans_no, _("&View this transfer")));
+	display_notification_centered(_("Consignment has been processed"));
+	display_note(get_trans_view_str($trans_type, $trans_no, _("&View this Consignment")));
 
   $itm = db_fetch(get_stock_transfer_items($_GET['AddedID']));
 
   if (is_fixed_asset($itm['mb_flag']))
-	  hyperlink_params($_SERVER['PHP_SELF'], _("Enter &Another Fixed Assets Transfer"), "NewTransfer=1&FixedAsset=1");
+	  hyperlink_params($_SERVER['PHP_SELF'], _("Enter &Another Consignment"), "NewConsignment=1&FixedAsset=1");
   else
-	  hyperlink_params($_SERVER['PHP_SELF'], _("Enter &Another Inventory Transfer"), "NewTransfer=1");
+	  hyperlink_params($_SERVER['PHP_SELF'], _("Enter &Another Consignment"), "NewConsignment=1");
 
 	display_footer_exit();
 }
@@ -72,25 +67,25 @@ function line_start_focus() {
 
 function handle_new_order()
 {
-	if (isset($_SESSION['transfer_items']))
+	if (isset($_SESSION['consignment_items']))
 	{
-		$_SESSION['transfer_items']->clear_items();
-		unset ($_SESSION['transfer_items']);
+		$_SESSION['consignment_items']->clear_items();
+		unset ($_SESSION['consignment_items']);
 	}
 
-	$_SESSION['transfer_items'] = new items_cart(ST_LOCTRANSFER);
-  $_SESSION['transfer_items']->fixed_asset = isset($_GET['FixedAsset']);
+	$_SESSION['consignment_items'] = new items_cart(ST_LOCTRANSFER);
+  $_SESSION['consignment_items']->fixed_asset = isset($_GET['FixedAsset']);
 	$_POST['AdjDate'] = new_doc_date();
 	if (!is_date_in_fiscalyear($_POST['AdjDate']))
 		$_POST['AdjDate'] = end_fiscalyear();
-	$_SESSION['transfer_items']->tran_date = $_POST['AdjDate'];	
+	$_SESSION['consignment_items']->tran_date = $_POST['AdjDate'];
 }
 
 //-----------------------------------------------------------------------------------------------
 
 if (isset($_POST['Process']))
 {
-	$tr = &$_SESSION['transfer_items'];
+	$tr = &$_SESSION['consignment_items'];
 	$input_error = 0;
 
 	if (count($tr->line_items) == 0)	{
@@ -105,7 +100,7 @@ if (isset($_POST['Process']))
 	} 
 	elseif (!is_date($_POST['AdjDate'])) 
 	{
-		display_error(_("The entered transfer date is invalid."));
+		display_error(_("The entered consignment date is invalid."));
 		set_focus('AdjDate');
 		$input_error = 1;
 	} 
@@ -127,7 +122,7 @@ if (isset($_POST['Process']))
 
 		if ($low_stock)
 		{
-    		display_error(_("The transfer cannot be processed because it would cause negative inventory balance in source location for marked items as of document date or later."));
+    		display_error(_("The consignment cannot be processed because it would cause negative inventory balance in source location for marked items as of document date or later."));
 			$input_error = 1;
 		}
 	}
@@ -140,17 +135,22 @@ if (isset($_POST['Process']))
 
 if (isset($_POST['Process']))
 {
-    $_SESSION['loc_type'] = 'location';
 
-	$trans_no = add_stock_transfer($_SESSION['transfer_items']->line_items,
+    $_SESSION['loc_type'] = 'consignment';
+
+	$trans_no = add_stock_transfer($_SESSION['consignment_items']->line_items,
 		$_POST['FromStockLocation'], $_POST['ToStockLocation'],
 		$_POST['AdjDate'], $_POST['ref'], $_POST['memo_'],$_POST['customer_id']);
 	new_doc_date($_POST['AdjDate']);
-	$_SESSION['transfer_items']->clear_items();
-	unset($_SESSION['transfer_items']);
-	unset($_SESSION['loc_type']);
+	$_SESSION['consignment_items']->clear_items();
+    unset($_SESSION['consignment_items']);
 
-   	meta_forward($_SERVER['PHP_SELF'], "AddedID=$trans_no");
+    $params = "AddedID=$trans_no";
+    $params.="&type=consignment";
+
+   	meta_forward($_SERVER['PHP_SELF'], $params);
+
+
 } /*end of process credit note */
 
 //-----------------------------------------------------------------------------------------------
@@ -172,8 +172,8 @@ function handle_update_item()
 {
 	$id = $_POST['LineNo'];
    	if (!isset($_POST['std_cost']))
-   		$_POST['std_cost'] = $_SESSION['transfer_items']->line_items[$id]->standard_cost;
-   	$_SESSION['transfer_items']->update_cart_item($id, input_num('qty'), $_POST['std_cost']);
+   		$_POST['std_cost'] = $_SESSION['consignment_items']->line_items[$id]->standard_cost;
+   	$_SESSION['consignment_items']->update_cart_item($id, input_num('qty'), $_POST['std_cost']);
 	line_start_focus();
 }
 
@@ -181,7 +181,7 @@ function handle_update_item()
 
 function handle_delete_item($id)
 {
-	$_SESSION['transfer_items']->remove_from_cart($id);
+	$_SESSION['consignment_items']->remove_from_cart($id);
 	line_start_focus();
 }
 
@@ -191,7 +191,7 @@ function handle_new_item()
 {
 	if (!isset($_POST['std_cost']))
    		$_POST['std_cost'] = 0;
-	add_to_order($_SESSION['transfer_items'], $_POST['stock_id'], input_num('qty'), $_POST['std_cost']);
+	add_to_order($_SESSION['consignment_items'], $_POST['stock_id'], input_num('qty'), $_POST['std_cost']);
 	line_start_focus();
 }
 
@@ -211,7 +211,7 @@ if (isset($_POST['CancelItemChanges'])) {
 }
 //-----------------------------------------------------------------------------------------------
 
-if (isset($_GET['NewTransfer']) || !isset($_SESSION['transfer_items']))
+if (isset($_GET['NewConsignment']) || !isset($_SESSION['consignment_items']))
 {
 	if (isset($_GET['fixed_asset']))
 		check_db_has_disposable_fixed_assets(_("There are no fixed assets defined in the system."));
@@ -224,19 +224,19 @@ if (isset($_GET['NewTransfer']) || !isset($_SESSION['transfer_items']))
 //-----------------------------------------------------------------------------------------------
 start_form();
 
-display_order_header($_SESSION['transfer_items']);
+display_order_header($_SESSION['consignment_items']);
 
 start_table(TABLESTYLE, "width='70%'", 10);
 start_row();
 echo "<td>";
-display_transfer_items(_("Items"), $_SESSION['transfer_items']);
+display_transfer_items(_("Items"), $_SESSION['consignment_items']);
 transfer_options_controls();
 echo "</td>";
 end_row();
 end_table(1);
 
 submit_center_first('Update', _("Update"), '', null);
-submit_center_last('Process', _("Process Transfer"), '',  'default');
+submit_center_last('Process', _("Process Consignment"), '',  'default');
 
 end_form();
 end_page();

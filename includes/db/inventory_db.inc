@@ -405,16 +405,18 @@ function handle_negative_inventory($stock_id, $quantity, $standard_cost, $date_)
 // $price - in transaction currency
 
 function add_stock_move($type, $stock_id, $trans_no, $location,
-    $date_, $reference, $quantity, $std_cost, $price=0)
+    $date_, $reference, $quantity, $std_cost,$customer_id=0,$price=0)
 {
+   $price = get_item_price_by_stock_id($stock_id);
 	$date = date2sql($date_);
+    $trans_type = isset($_SESSION['loc_type']) ? $_SESSION['loc_type'] : 'location';
 
 	$sql = "INSERT INTO ".TB_PREF."stock_moves (stock_id, trans_no, type, loc_code,
-		tran_date, reference, qty, standard_cost, price) VALUES ("
+		tran_date, reference, qty, standard_cost, price,trans_type,customer_id) VALUES ("
 		.db_escape($stock_id).", ".db_escape($trans_no).", "
 		.db_escape($type).", ".db_escape($location).", '$date', "
 		.db_escape($reference).", "
-		.db_escape($quantity).", ".db_escape($std_cost)."," .db_escape($price).")";
+		.db_escape($quantity).", ".db_escape($std_cost)."," .db_escape($price)."," .db_escape($trans_type)."," .db_escape($customer_id).")";
 
 	db_query($sql, "The stock movement record cannot be inserted");
 
@@ -500,6 +502,21 @@ function get_location_name($loc_code)
 	display_db_error("could not retreive the location name for $loc_code", $sql, true);
 }
 
+function get_item_price_by_stock_id($stock_id)
+{
+    $sql = "SELECT price FROM ".TB_PREF."purch_data
+		WHERE stock_id=".db_escape($stock_id);
+
+    $result = db_query($sql, "could not retreive the item price for $stock_id");
+
+    if (db_num_rows($result) == 1)
+    {
+        $row = db_fetch_row($result);
+        return $row[0];
+    }
+
+    display_db_error("could not retreive the item price for $stock_id", $sql, true);
+}
 function get_mb_flag($stock_id)
 {
 	$sql = "SELECT mb_flag FROM ".TB_PREF."stock_master
