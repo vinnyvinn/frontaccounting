@@ -132,7 +132,7 @@ for ($i = $from; $i <= $to; $i++)
                 <div class="col-sm-5 text-center text-sm-right">
                     <h4 class="mb-0">PURCHASE ORDER</h4>
                     <p class="mb-0">Purchase Order No. <?php echo $formData['reference'];?></p>
-                    <p class="mt-5"><b>Date: </b> <?php echo sql2date($formData['ord_date']);?></p>
+                    <p class="mt-5"><b>Date: </b> <?php echo date("d/m/Y", strtotime($formData['ord_date']));?></p>
                 </div>
             </div>
             <hr>
@@ -172,7 +172,7 @@ for ($i = $from; $i <= $to; $i++)
                         <td class="text-center"><?php echo $formData['contact'];?></td>
                         <td class="text-center"><?php echo $formData['tax_id'];?></td>
                         <td class="text-center"><?php echo $formData['requisition_no'];?></td>
-                        <td class="text-center"><?php echo sql2date($formData['document_date']);?></td>
+                        <td class="text-center"><?php echo date("d/m/Y", strtotime($formData['document_date']));?></td>
                     </tr>
                     </tbody>
                 </table>

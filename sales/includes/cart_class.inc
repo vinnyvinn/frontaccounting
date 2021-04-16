@@ -285,9 +285,7 @@ class Cart
 	// Makes parent documents for direct delivery/invoice by recurent call.
 	// $policy - 0 or 1:  writeoff/return for IV, back order/cancel for DN
 	function write($policy=0) {
-		
 		global $SysPrefs, $Refs;
-		
 		begin_transaction(); // prevents partial database changes in case of direct delivery/invoice
 		if ($this->reference != 'auto' && $this->trans_no == 0 && !is_new_reference($this->reference, $this->trans_type))
 		{
@@ -325,7 +323,7 @@ class Cart
 			$this->line_items[$lineno]->stock_id = @html_entity_decode($line->stock_id, ENT_QUOTES);
 			$this->line_items[$lineno]->item_description = @html_entity_decode($line->item_description, ENT_QUOTES);
 		}
-		switch($this->trans_type) {
+            switch($this->trans_type) {
 			case ST_SALESINVOICE:
 				$ret = write_sales_invoice($this); break;
 			case ST_CUSTCREDIT:

@@ -55,7 +55,7 @@ $transfer_items = get_stock_moves(ST_LOCTRANSFER, $trans_no);
             <div class="col-sm-5 text-center text-sm-right">
              <h4 class="mb-0">Consignment Delivery</h4>
              <p class="mb-0">Consignment Number - <?php echo $trans['reference'];?></p>
-             <p class="mt-5"><b>Consignment Date</b> <?php echo sql2date($trans['tran_date']);?></p>
+             <p class="mt-5"><b>Consignment Date</b> <?php echo date("d/m/Y", strtotime($trans['tran_date']));?></p>
             </div>
         </div>
         <hr>

@@ -168,7 +168,7 @@ function print_link($link_text, $rep, $pars = array(), $dir = '',
 	if (user_graphic_links() && $icon)
 		$pars[0] = set_icon($icon, $pars[0]);
 
-    if ($rep==107 && $link_text=='&Print Sales Invoice'){
+    if ($rep==107 && ($link_text=='&Print Sales Invoice' || $link_text=='&Print This Invoice')){
         return "<a target='_blank' href='$inv_url'>$pars[0]</a>";
     }
 

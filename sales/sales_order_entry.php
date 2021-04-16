@@ -750,6 +750,7 @@ if ($customer_error == "") {
 	echo "</td></tr>";
 	end_table(1);
 
+
 	if ($_SESSION['Items']->trans_no == 0) {
 		submit_center_first('ProcessOrder', $porder,
 		    _('Check entered data and save document'), 'default');
